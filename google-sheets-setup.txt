@@ -1,0 +1,23 @@
+function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(["Timestamp", "Nome", "Cognome", "Intolleranze"]);
+  }
+
+  var params = e.parameter;
+  sheet.appendRow([
+    params.timestamp || new Date().toISOString(),
+    params.nome || "",
+    params.cognome || "",
+    params.intolleranze || "Nessuna"
+  ]);
+
+  return ContentService
+    .createTextOutput(JSON.stringify({ result: "success" }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function doGet() {
+  return ContentService.createTextOutput("RSVP endpoint attivo.");
+}

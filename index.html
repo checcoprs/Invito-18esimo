@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Invito digitale — Festa dei 18 anni. Tema Matrix.">
+  <title>Invito Festa 18</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="matrix-fallback" aria-hidden="true"></div>
+  <canvas id="matrixRain" aria-hidden="true"></canvas>
+  <script src="matrix-rain.js" defer></script>
+
+  <main class="container" id="mainContent">
+    <header class="header">
+      <p class="glitch-label" data-text="SYSTEM://INVITO">SYSTEM://INVITO</p>
+      <h1 class="title">Sei stato selezionato per entrare nel mondo reale</h1>
+      <p class="subtitle">Festa dei 18 anni — Protocollo Matrix attivo</p>
+
+      <div class="event-details">
+        <div class="detail-row">
+          <span class="detail-key">DATA</span>
+          <span class="detail-value" id="eventDate">Mercoledì 01 Luglio 2026</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-key">ORA</span>
+          <span class="detail-value" id="eventTime">21:00</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-key">LUOGO</span>
+          <span class="detail-value" id="eventPlace">Via Zeccagnuolo, 31, 84016 Pagani SA</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="choice-section" id="choiceSection">
+      <p class="choice-prompt">&gt; La scelta è tua. Cosa vuoi fare?</p>
+      <div class="pills">
+        <button type="button" class="pill pill--red" id="pillRed" aria-label="Pillola rossa — Partecipo">
+          <span class="pill-icon">●</span>
+          <span class="pill-label">Pillola Rossa</span>
+          <span class="pill-desc">Accetto la realtà / Partecipo</span>
+        </button>
+        <button type="button" class="pill pill--blue" id="pillBlue" aria-label="Pillola blu — Non vengo">
+          <span class="pill-icon">●</span>
+          <span class="pill-label">Pillola Blu</span>
+          <span class="pill-desc">Resta nell'illusione / Non vengo</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="message-section message-section--blue hidden" id="blueMessage" aria-live="polite">
+      <p class="terminal-line">&gt; Connessione interrotta.</p>
+      <p class="terminal-quote">"Svegliati nel tuo letto e credi a quello che vuoi credere."</p>
+      <p class="terminal-hint">— Morpheus</p>
+      <button type="button" class="btn-secondary" id="btnRetry">Riprendi la connessione</button>
+    </section>
+
+    <section class="form-section hidden" id="formSection">
+      <p class="form-intro">&gt; Inserisci i tuoi dati per l'accesso alla Nabucodonosor.</p>
+
+      <form id="rsvpForm" novalidate>
+        <div class="field">
+          <label for="nome">Nome <span class="required">*</span></label>
+          <input type="text" id="nome" name="nome" required autocomplete="given-name" placeholder="Neo">
+        </div>
+
+        <div class="field">
+          <label for="cognome">Cognome <span class="required">*</span></label>
+          <input type="text" id="cognome" name="cognome" required autocomplete="family-name" placeholder="Anderson">
+        </div>
+
+        <div class="field field--checkbox">
+          <label class="checkbox-label">
+            <input type="checkbox" id="hasIntolleranze" name="hasIntolleranze">
+            <span>Hai intolleranze o allergie alimentari?</span>
+          </label>
+        </div>
+
+        <div class="field hidden" id="intolleranzeField">
+          <label for="intolleranze">Specifica intolleranze / esigenze</label>
+          <textarea id="intolleranze" name="intolleranze" rows="3" placeholder="Es. celiachia, lattosio, arachidi..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" id="btnSubmit">
+          <span class="btn-text">Invia // Conferma accesso</span>
+          <span class="btn-loading hidden">Trasmissione in corso...</span>
+        </button>
+      </form>
+    </section>
+
+    <section class="message-section message-section--success hidden" id="successMessage" aria-live="polite">
+      <p class="terminal-line terminal-line--success">&gt; Accesso consentito.</p>
+      <p class="terminal-quote">Benvenuto a bordo della Nabucodonosor.</p>
+      <p class="terminal-hint">La tua presenza è stata registrata nel sistema.</p>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
