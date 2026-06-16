@@ -19,7 +19,7 @@ function initApp() {
   const intolleranzeField = document.getElementById("intolleranzeField");
   const btnSubmit = document.getElementById("btnSubmit");
 
-  const flagReg = true; //true=reg aperte --- False=reg chiuse
+  const flagReg = false; //true=reg aperte --- False=reg chiuse
 
   if (!choiceSection || !formSection || !deniedMessage || !successMessage || !pillRed || !pillBlue || !rsvpForm || !btnSubmit) {
     console.warn("Elemento richiesto non trovato. Assicurati che il DOM sia caricato correttamente.");
