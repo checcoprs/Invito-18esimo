@@ -8,16 +8,20 @@ function initApp() {
   const choiceSection = document.getElementById("choiceSection");
   const blueMessage = document.getElementById("blueMessage");
   const formSection = document.getElementById("formSection");
+  const deniedMessage = document.getElementById("deniedMessage");
   const successMessage = document.getElementById("successMessage");
   const pillRed = document.getElementById("pillRed");
   const pillBlue = document.getElementById("pillBlue");
   const btnRetry = document.getElementById("btnRetry");
+  const btnDeniedRetry = document.getElementById("btnDeniedRetry");
   const rsvpForm = document.getElementById("rsvpForm");
   const hasIntolleranze = document.getElementById("hasIntolleranze");
   const intolleranzeField = document.getElementById("intolleranzeField");
   const btnSubmit = document.getElementById("btnSubmit");
 
-  if (!choiceSection || !formSection || !successMessage || !pillRed || !pillBlue || !rsvpForm || !btnSubmit) {
+  const flagReg = false; //true=reg aperte --- False=reg chiuse
+
+  if (!choiceSection || !formSection || !deniedMessage || !successMessage || !pillRed || !pillBlue || !rsvpForm || !btnSubmit) {
     console.warn("Elemento richiesto non trovato. Assicurati che il DOM sia caricato correttamente.");
     return;
   }
@@ -25,12 +29,14 @@ function initApp() {
   function showChoice() {
     choiceSection.classList.remove("hidden");
     blueMessage.classList.add("hidden");
+    deniedMessage.classList.add("hidden");
     formSection.classList.add("hidden");
     successMessage.classList.add("hidden");
   }
 
   function showBlueMessage() {
     choiceSection.classList.add("hidden");
+    deniedMessage.classList.add("hidden");
     blueMessage.classList.remove("hidden");
     formSection.classList.add("hidden");
   }
@@ -45,13 +51,28 @@ function initApp() {
 
   function showSuccess() {
     choiceSection.classList.add("hidden");
+    deniedMessage.classList.add("hidden");
     formSection.classList.add("hidden");
     successMessage.classList.remove("hidden");
   }
 
-  pillRed.addEventListener("click", showForm);
+  function showDenied() {
+    choiceSection.classList.add("hidden");
+    successMessage.classList.add("hidden");
+    formSection.classList.add("hidden");
+    deniedMessage.classList.remove("hidden");
+  }
+
+  pillRed.addEventListener("click", () => {
+    if (!flagReg) {
+      showDenied();
+    } else {
+      showForm();
+    }
+  });
   pillBlue.addEventListener("click", showBlueMessage);
   btnRetry.addEventListener("click", showChoice);
+  btnDeniedRetry.addEventListener("click", showChoice);
 
   hasIntolleranze.addEventListener("change", () => {
     if (hasIntolleranze.checked) {
@@ -104,7 +125,7 @@ function initApp() {
         nome: data.nome,
         cognome: data.cognome,
         intolleranze: data.intolleranze,
-        _subject: `RSVP Matrix 18 — ${data.nome} ${data.cognome}`,
+        _subject: `RSVP Matrix 18—${data.nome} ${data.cognome}`,
       }),
     });
     return response.ok;
@@ -140,6 +161,11 @@ function initApp() {
         ? document.getElementById("intolleranze").value.trim() || "Sì (non specificato)"
         : "Nessuna",
     };
+
+    if (!flagReg) {
+      showDenied();
+      return;
+    }
 
     btnSubmit.disabled = true;
     btnText.classList.add("hidden");

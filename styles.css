@@ -304,6 +304,16 @@ body {
   text-shadow: 0 0 10px var(--pill-blue-glow);
 }
 
+.message-section--denied .terminal-line,
+.message-section--denied .terminal-quote {
+  color: var(--pill-red);
+  text-shadow: 0 0 12px rgba(255, 107, 107, 0.35);
+}
+
+.message-section--denied .terminal-hint {
+  color: rgba(255, 107, 107, 0.75);
+}
+
 .message-section--success .terminal-line--success,
 .message-section--success .terminal-quote {
   color: var(--accent-green);

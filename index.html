@@ -96,6 +96,13 @@
       </form>
     </section>
 
+    <section class="message-section message-section--denied hidden" id="deniedMessage" aria-live="polite">
+      <p class="terminal-line">&gt; Nessuna connessione disponibile.</p>
+      <p class="terminal-quote">Ci dispiace ma il tempo per accettare la proposta si è concluso.</p>
+      <p class="terminal-hint">I tuoi dati non saranno trasmessi al sistema.</p>
+      <button type="button" class="btn-secondary" id="btnDeniedRetry">Riprova</button>
+    </section>
+
     <section class="message-section message-section--success hidden" id="successMessage" aria-live="polite">
       <p class="terminal-line terminal-line--success">&gt; Accesso consentito.</p>
       <p class="terminal-quote">Benvenuto a bordo della Nabucodonosor.</p>
